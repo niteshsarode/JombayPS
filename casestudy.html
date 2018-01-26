@@ -1,0 +1,70 @@
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Jombay Case Study</title>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+	<link rel="stylesheet" href="casestudy.css"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+	<script type="text/javascript" src="casestudy.js"></script>
+</head>
+<body ng-app="caseStudyApp" ng-cloak ng-controller="caseStudyController">
+<md-content>
+	<md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h1 flex md-truncate style="color: orange"><b>{{ name }}</b></h1>
+      </div>
+    </md-toolbar>
+</md-content>
+
+<div layout="column" style="height:500px; padding-top: 30px" ng-cloak>
+
+  <section layout="row" flex>
+
+    <md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="4" style="height: 100%;">
+
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Case Study</h1>
+      </md-toolbar>
+	    <md-content layout-padding>
+	  	<md-button class="md-raised md-primary" ng-click="fetchQuestions()">Questions</md-button>
+	    <ul>
+	    	<li ng-repeat="(index, que) in questionArray">
+	    		<md-button class="md-raised" ng-click="displayQuestion(index+1)">Question {{ index + 1 }}</md-button>
+	    	</li>
+	    </ul>
+	  	</md-content>
+    </md-sidenav>
+
+    <md-content flex layout-padding>
+		<div ng-show="CompanyName" layout="column" layout-align="top center">
+			<h1 style="font-size: 60px"> {{ name }}</h1>
+		</div>
+		<div ng-show="WelcomeMessage" layout="column" layout-align="top center">
+			<h1 style="font-size: 40px"> {{ displayMessage }}</h1>
+		</div>
+		<div ng-show="QuestionLayout">
+			<h2> {{ question }}</h2>
+			<md-input-container class="md-block">
+	        <label>Answer</label>
+	        	<textarea md-select-on-focus rows="10"></textarea>
+	        </md-input-container>
+	        <md-button class="md-raised md-primary previous-btn" ng-click = "goToPrevious()"  ng-if = "currentQno !== 0">Previous</md-button>
+	        <md-button class="md-raised md-primary next-btn" ng-click = "goToNext()" ng-if = "currentQno !== 4">Next</md-button>
+	       		<md-button class="md-raised md-primary next-btn" ng-click = "submitAnswers($event)" ng-if = "currentQno == 4 ">Submit</md-button>
+		</div>
+    </md-content>
+  </section>
+</div>
+</body>
+</html>
