@@ -51,6 +51,7 @@ app.controller('caseStudyController', function($scope, $http, $mdDialog, caseStu
 
 		        	$scope.questions = response.data.user_company_case_study.company_case_study.questions;
 
+		        	/*Iterating through json array and removing HTML tags*/
 		        	angular.forEach($scope.questions, function(item){
 		        		questionArray.push(caseStudyService.removeTags(item.body));
 		        	});
@@ -95,7 +96,7 @@ app.controller('caseStudyController', function($scope, $http, $mdDialog, caseStu
 		          .targetEvent(e)
 		          .ok('Submit!')
 		          .cancel('Cancel');
-           $mdDialog.show(confirm);
+           $mdDialog.show(confirm); /*Displays Confirm Dialog box on submit*/
         }
 
 
